@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 495010}
   - 114: {fileID: 11495010}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,6 +42,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 495014}
+  - 114: {fileID: 11412842}
+  - 54: {fileID: 5412842}
   m_Layer: 0
   m_Name: CameraWithShip
   m_TagString: Untagged
@@ -181,6 +183,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195012}
   m_Mesh: {fileID: 4300000, guid: 6cada7e06467b446788dc75010d0f041, type: 3}
+--- !u!54 &5412842
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195014}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!81 &8195010
 AudioListener:
   m_ObjectHideFlags: 1
@@ -210,6 +227,23 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11412842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5d93995c9a347b3ba9b220abbaccb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ship: {fileID: 195010}
+  Power: 2
+  MoveForwardKey: 119
+  MoveBackwardKey: 115
+  MoveLeftKey: 97
+  MoveRightKey: 100
 --- !u!114 &11495010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetCamera: {fileID: 195016}
-  RotationSpeed: .0500000007
+  RotationSpeed: .5
 --- !u!114 &11495012
 MonoBehaviour:
   m_ObjectHideFlags: 1
