@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Follows the target GameObject's (camera's) rotation with the given rotation speed. 
 public class CameraFollower : MonoBehaviour {
 
 	public GameObject TargetCamera;
@@ -16,7 +17,7 @@ public class CameraFollower : MonoBehaviour {
 			this.transform.rotation =
 				Quaternion.Slerp(this.transform.rotation,
 								 this.TargetCamera.transform.rotation,
-								 this.RotationSpeed);
+								 this.RotationSpeed * Time.deltaTime);
 		}
 	}
 }
