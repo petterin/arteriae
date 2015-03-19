@@ -39,6 +39,7 @@ public class MoveSound : MonoBehaviour {
 		yield return new WaitForSeconds(MoveStartSound.length);
 		AudioS.loop = true;
 		AudioS.clip = MoveInProgressSound;
+		AudioS.volume = AudioVolume;
 		AudioS.Play();
 	}
 
