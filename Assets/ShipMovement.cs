@@ -13,6 +13,8 @@ public class ShipMovement : MonoBehaviour {
 	public KeyCode MoveBackwardKey = KeyCode.S;
 	public KeyCode MoveLeftKey = KeyCode.A;
 	public KeyCode MoveRightKey = KeyCode.D;
+	public KeyCode MoveUpKey = KeyCode.O;
+	public KeyCode MoveDownKey = KeyCode.L;
 	
 	// Use this for initialization
 	void Start () {
@@ -38,6 +40,12 @@ public class ShipMovement : MonoBehaviour {
 			}
 			if(Input.GetKey(this.MoveRightKey)) {
 				direction += this.Ship.transform.right;
+			}
+			if(Input.GetKey(this.MoveUpKey)) {
+				direction += this.Ship.transform.up;
+			}
+			if(Input.GetKey(this.MoveDownKey)) {
+				direction -= this.Ship.transform.up;
 			}
 			
 			direction.Normalize();
