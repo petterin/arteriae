@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1001 &81870664
 Prefab:
@@ -117,6 +118,14 @@ Prefab:
       propertyPath: _linkedCamera
       value: 
       objectReference: {fileID: 1621933706}
+    - target: {fileID: 11400012, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
+      propertyPath: enableOculusRift
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
+      propertyPath: oculusMirrorMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
   m_RootGameObject: {fileID: 1314309971}
@@ -457,7 +466,24 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11431146, guid: b7061d07e9f7d460f978c28d59a9b04d, type: 2}
+      propertyPath: AudioVolume
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231144, guid: b7061d07e9f7d460f978c28d59a9b04d, type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431150, guid: b7061d07e9f7d460f978c28d59a9b04d, type: 2}
+      propertyPath: RotationThresholdAngle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431150, guid: b7061d07e9f7d460f978c28d59a9b04d, type: 2}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 1510675735}
+    m_RemovedComponents:
+    - {fileID: 11493760, guid: b7061d07e9f7d460f978c28d59a9b04d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b7061d07e9f7d460f978c28d59a9b04d, type: 2}
   m_RootGameObject: {fileID: 1059491589}
   m_IsPrefabParent: 0
@@ -587,7 +613,7 @@ MonoBehaviour:
   MoveInProgressSound: {fileID: 8300000, guid: 8c9f108814e984974b7f4e5f09ccc8b1, type: 3}
   MoveEndSound: {fileID: 8300000, guid: 064b8098a39bd480da4b46f4776d284c, type: 3}
   AudioS: {fileID: 563687956}
-  AudioVolume: .200000003
+  AudioVolume: .0500000007
 --- !u!114 &563687958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,7 +1877,7 @@ Transform:
   m_PrefabInternal: {fileID: 471641273}
   m_GameObject: {fileID: 729145922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.69000006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 793173308}
@@ -2523,10 +2549,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ship: {fileID: 563687953}
-  Camera: {fileID: 1621933699}
+  Camera: {fileID: 1510675735}
   Power: 100
   RotationPower: .5
-  RotationThresholdAngle: 25
+  RotationThresholdAngle: 3
   MoveForwardKey: 119
   MoveBackwardKey: 115
   MoveLeftKey: 97
@@ -2902,7 +2928,8 @@ GameObject:
   - 114: {fileID: 1621933704}
   - 114: {fileID: 1621933703}
   - 114: {fileID: 1621933702}
-  - 114: {fileID: 1621933701}
+  - 82: {fileID: 1621933707}
+  - 82: {fileID: 1621933701}
   m_Layer: 0
   m_Name: RUISCamera
   m_TagString: MainCamera
@@ -2925,25 +2952,64 @@ Transform:
   - {fileID: 959622473}
   m_Father: {fileID: 563687954}
   m_RootOrder: 2
---- !u!114 &1621933701
-MonoBehaviour:
+--- !u!82 &1621933701
+AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11493760, guid: b7061d07e9f7d460f978c28d59a9b04d,
-    type: 2}
-  m_PrefabInternal: {fileID: 471641273}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1621933699}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 0
-  sensitivityX: 15
-  sensitivityY: 15
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: eb5393b0a9ae34309a8cbdd1064e36b4, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .809000015
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &1621933702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3043,6 +3109,64 @@ MonoBehaviour:
     m_Bits: 4294967295
   near: .100000001
   far: 500
+--- !u!82 &1621933707
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1621933699}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 663bcdc42a5394530b515123ac94c9e8, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &2110677993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,7 +3290,7 @@ MonoBehaviour:
   resolutionX: 1920
   resolutionY: 1080
   useDoubleTheSpace: 0
-  enableOculusRift: 0
+  enableOculusRift: 1
   oculusLowPersistence: 1
   oculusMirrorMode: 1
   isStereo: 0
