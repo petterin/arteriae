@@ -37,12 +37,11 @@ public class ShipMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float acceleration = Time.deltaTime * this.Power;
 		Vector3 direction = new Vector3(0,0,0);
 		
 		// Handling translation first
 		if(this.SixenseInputObject != null) {
-			// The left joystick is used for movement in the xy plane
+			// The left joystick is used for movement in the xz plane
 			SixenseInput.Controller leftController = SixenseInput.GetController(SixenseHands.LEFT);
 			// Moving up and down is controlled by the right handle's buttons 4 and 3
 			SixenseInput.Controller rightController = SixenseInput.GetController(SixenseHands.RIGHT);
@@ -78,7 +77,8 @@ public class ShipMovement : MonoBehaviour {
 		}
 		
 		direction.Normalize();
-		this.Ship.GetComponent<Rigidbody>().velocity += direction * acceleration;
+		// Note: no deltaTime multiplier is necessary, the physics engine takes care of that
+		this.Ship.GetComponent<Rigidbody>().AddForce(direction * this.Power);
 		
 		// Moving the camera with the ship
 		this.Camera.transform.position = this.Ship.transform.position;
