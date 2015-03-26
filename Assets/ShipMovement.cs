@@ -6,6 +6,8 @@ public class ShipMovement : MonoBehaviour {
 	public GameObject Ship;
 	// This camera is translated relative to the ship
 	public GameObject Camera;
+	// Razer hydra contoller object, if available
+	public GameObject SixenseInputObject;
 	// Determines how much the velocity changes with respect to time passed
 	public float Power = 1;
 	// Determines how much the rotation changes with respect to time passed
@@ -13,13 +15,13 @@ public class ShipMovement : MonoBehaviour {
 	// Determines how much the head must be turned to turn the ship
 	public float RotationThresholdAngle = 25;
 	
-	public KeyCode MoveForwardKey = KeyCode.W;
-	public KeyCode MoveBackwardKey = KeyCode.S;
-	public KeyCode MoveLeftKey = KeyCode.A;
-	public KeyCode MoveRightKey = KeyCode.D;
-	public KeyCode MoveUpKey = KeyCode.O;
-	public KeyCode MoveDownKey = KeyCode.L;
-	
+	private KeyCode MoveForwardKey = KeyCode.W;
+	private KeyCode MoveBackwardKey = KeyCode.S;
+	private KeyCode MoveLeftKey = KeyCode.A;
+	private KeyCode MoveRightKey = KeyCode.D;
+	private KeyCode MoveUpKey = KeyCode.O;
+	private KeyCode MoveDownKey = KeyCode.L;
+		
 	// Use this for initialization
 	void Start () {
 		if(!this.Ship) {
@@ -28,6 +30,9 @@ public class ShipMovement : MonoBehaviour {
 		if(!this.Camera) {
 			throw new UnityException("No camera detected in ShipMovement!");
 		}
+		if(this.SixenseInputObject == null) {
+			Debug.LogWarning("No SixenseInput found for the ShipMovement script! Only keyboard commands are available: WASD, OL", this);
+		}
 	}
 	
 	// Update is called once per frame
@@ -35,41 +40,55 @@ public class ShipMovement : MonoBehaviour {
 		float acceleration = Time.deltaTime * this.Power;
 		Vector3 direction = new Vector3(0,0,0);
 		
-		// Handling translation first 
-		if(Input.GetKey(this.MoveForwardKey)) {
-			direction += this.Ship.transform.forward;
-		}
-		if(Input.GetKey(this.MoveBackwardKey)) {
-			direction -= this.Ship.transform.forward;
-		}
-		if(Input.GetKey(this.MoveLeftKey)) {
-			direction -= this.Ship.transform.right;
-		}
-		if(Input.GetKey(this.MoveRightKey)) {
-			direction += this.Ship.transform.right;
-		}
-		if(Input.GetKey(this.MoveUpKey)) {
-			direction += this.Ship.transform.up;
-		}
-		if(Input.GetKey(this.MoveDownKey)) {
-			direction -= this.Ship.transform.up;
+		// Handling translation first
+		if(this.SixenseInputObject != null) {
+			// The left joystick is used for movement in the xy plane
+			SixenseInput.Controller leftController = SixenseInput.GetController(SixenseHands.LEFT);
+			// Moving up and down is controlled by the right handle's buttons 4 and 3
+			SixenseInput.Controller rightController = SixenseInput.GetController(SixenseHands.RIGHT);
+			
+			direction = this.Ship.transform.forward * leftController.JoystickY +
+				this.Ship.transform.right * leftController.JoystickX;
+				
+			if(rightController.GetButton(SixenseButtons.FOUR)) {
+				direction += this.Ship.transform.up;
+			}
+			if(rightController.GetButton(SixenseButtons.THREE)) {
+				direction -= this.Ship.transform.up;
+			}
+		} else {
+			if(Input.GetKey(this.MoveForwardKey)) {
+				direction += this.Ship.transform.forward;
+			}
+			if(Input.GetKey(this.MoveBackwardKey)) {
+				direction -= this.Ship.transform.forward;
+			}
+			if(Input.GetKey(this.MoveLeftKey)) {
+				direction -= this.Ship.transform.right;
+			}
+			if(Input.GetKey(this.MoveRightKey)) {
+				direction += this.Ship.transform.right;
+			}
+			if(Input.GetKey(this.MoveUpKey)) {
+				direction += this.Ship.transform.up;
+			}
+			if(Input.GetKey(this.MoveDownKey)) {
+				direction -= this.Ship.transform.up;
+			}
 		}
 		
 		direction.Normalize();
 		this.Ship.GetComponent<Rigidbody>().velocity += direction * acceleration;
 		
+		// Moving the camera with the ship
 		this.Camera.transform.position = this.Ship.transform.position;
 		
 		// Then handling rotation
-		Quaternion shipRotation = this.Ship.transform.rotation;
-		Quaternion camRotation = this.Camera.transform.rotation;
-		float angle = Quaternion.Angle(camRotation, shipRotation);
-		if(angle > this.RotationThresholdAngle)
-		{
-			this.Ship.GetComponent<Rigidbody>().MoveRotation(
-				Quaternion.Slerp(shipRotation,
-				                 camRotation,
-				                 this.RotationPower * Time.deltaTime));
+		float angle = Vector3.Angle(this.Ship.transform.forward, this.Camera.transform.forward);
+		if(angle > this.RotationThresholdAngle) {
+			// Rotation axis is the cross product of the target and current forward vector
+			Vector3 axis = Vector3.Cross(this.Ship.transform.forward, this.Camera.transform.forward);
+			this.Ship.GetComponent<Rigidbody>().AddTorque(axis * this.RotationPower);
 		}
 	}
 }
