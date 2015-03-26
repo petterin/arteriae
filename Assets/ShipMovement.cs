@@ -56,7 +56,7 @@ public class ShipMovement : MonoBehaviour {
 		}
 		
 		direction.Normalize();
-		this.Ship.rigidbody.velocity += direction * acceleration;
+		this.Ship.GetComponent<Rigidbody>().velocity += direction * acceleration;
 		
 		this.Camera.transform.position = this.Ship.transform.position;
 		
@@ -66,7 +66,7 @@ public class ShipMovement : MonoBehaviour {
 		float angle = Quaternion.Angle(camRotation, shipRotation);
 		if(angle > this.RotationThresholdAngle)
 		{
-			this.Ship.rigidbody.MoveRotation(
+			this.Ship.GetComponent<Rigidbody>().MoveRotation(
 				Quaternion.Slerp(shipRotation,
 				                 camRotation,
 				                 this.RotationPower * Time.deltaTime));
