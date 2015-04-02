@@ -15,12 +15,16 @@ public class ShipMovement : MonoBehaviour {
 	// Determines how much the head must be turned to turn the ship
 	public float RotationThresholdAngle = 25;
 	
+	public bool EnableRoll = true;
+	
 	private KeyCode MoveForwardKey = KeyCode.W;
 	private KeyCode MoveBackwardKey = KeyCode.S;
 	private KeyCode MoveLeftKey = KeyCode.A;
 	private KeyCode MoveRightKey = KeyCode.D;
-	private KeyCode MoveUpKey = KeyCode.O;
-	private KeyCode MoveDownKey = KeyCode.L;
+	private KeyCode MoveUpKey = KeyCode.I;
+	private KeyCode MoveDownKey = KeyCode.K;
+	private KeyCode RollLeftKey = KeyCode.J;
+	private KeyCode RollRightKey = KeyCode.L;
 		
 	// Use this for initialization
 	void Start () {
@@ -31,7 +35,7 @@ public class ShipMovement : MonoBehaviour {
 			throw new UnityException("No camera detected in ShipMovement!");
 		}
 		if(this.SixenseInputObject == null) {
-			Debug.LogWarning("No SixenseInput found for the ShipMovement script! Only keyboard commands are available: WASD, OL", this);
+			Debug.LogWarning("No SixenseInput found for the ShipMovement script! Only keyboard commands are available: WASD, IKJL", this);
 		}
 	}
 	
@@ -49,8 +53,13 @@ public class ShipMovement : MonoBehaviour {
 			direction = this.Ship.transform.forward * leftController.JoystickY +
 				this.Ship.transform.right * leftController.JoystickX;
 			
-			// Note: only the y direction is used from the right joystick
 			direction += this.Ship.transform.up * rightController.JoystickY;
+			if(this.EnableRoll) {
+				Vector3 torque = this.Ship.transform.forward * 
+					this.RotationPower * 
+					-rightController.JoystickX;
+				this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
+			}
 			
 		} else {
 			if(Input.GetKey(this.MoveForwardKey)) {
@@ -70,6 +79,16 @@ public class ShipMovement : MonoBehaviour {
 			}
 			if(Input.GetKey(this.MoveDownKey)) {
 				direction -= this.Ship.transform.up;
+			}
+			if(this.EnableRoll) {
+				Vector3 torque = new Vector3(0,0,0);
+				if(Input.GetKey(this.RollLeftKey)) {
+					torque += this.Ship.transform.forward * this.RotationPower;
+				}
+				if(Input.GetKey(this.RollRightKey)) {
+					torque -= this.Ship.transform.forward * this.RotationPower;
+				}
+				this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
 			}
 		}
 		
