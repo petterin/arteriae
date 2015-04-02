@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f444dd9a5434469e905410446ddff3d
+guid: af99d6d6ebfda44e7af6b41024ed5a76
 timeCreated: 1427971886
 licenseType: Free
 ModelImporter:
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: claw_R
+    4300000: claw_L
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -30,7 +30,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1000
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
