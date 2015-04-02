@@ -46,16 +46,12 @@ public class ShipMovement : MonoBehaviour {
 			// Moving up and down is controlled by the right handle's buttons 4 and 3
 			SixenseInput.Controller rightController = SixenseInput.GetController(SixenseHands.RIGHT);
 			
-			
 			direction = this.Ship.transform.forward * leftController.JoystickY +
 				this.Ship.transform.right * leftController.JoystickX;
-				
-			if(rightController.GetButton(SixenseButtons.FOUR)) {
-				direction += this.Ship.transform.up;
-			}
-			if(rightController.GetButton(SixenseButtons.TWO)) {
-				direction -= this.Ship.transform.up;
-			}
+			
+			// Note: only the y direction is used from the right joystick
+			direction += this.Ship.transform.up * rightController.JoystickY;
+			
 		} else {
 			if(Input.GetKey(this.MoveForwardKey)) {
 				direction += this.Ship.transform.forward;
