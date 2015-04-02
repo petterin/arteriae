@@ -321,7 +321,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 45.4900017
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &563687959
 MonoBehaviour:
@@ -1065,7 +1065,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .100000001
-  far clip plane: 500
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 100
@@ -1256,7 +1256,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   near: .100000001
-  far: 500
+  far: 1000
 --- !u!114 &1621933708
 MonoBehaviour:
   m_ObjectHideFlags: 0
