@@ -11,7 +11,7 @@ public class CellCreator : MonoBehaviour {
 		
 	}
 	void Spawn () {
-		GameObject obj = (GameObject) Instantiate (cell, transform.position, transform.rotation);
+		GameObject obj = (GameObject) Instantiate (cell, transform.position, Random.rotation);
 		Vector3 initialVelocity = Random.insideUnitSphere * 10;
 		obj.GetComponent<Rigidbody>().velocity = initialVelocity;
 	}
