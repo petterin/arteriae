@@ -25,7 +25,7 @@ public class ShipMovement : MonoBehaviour {
 	private KeyCode MoveDownKey = KeyCode.K;
 	private KeyCode RollLeftKey = KeyCode.J;
 	private KeyCode RollRightKey = KeyCode.L;
-		
+
 	// Use this for initialization
 	void Start () {
 		if(!this.Ship) {
@@ -50,17 +50,20 @@ public class ShipMovement : MonoBehaviour {
 			// Moving up and down is controlled by the right handle's buttons 4 and 3
 			SixenseInput.Controller rightController = SixenseInput.GetController(SixenseHands.RIGHT);
 			
-			direction = this.Ship.transform.forward * leftController.JoystickY +
-				this.Ship.transform.right * leftController.JoystickX;
-			
-			direction += this.Ship.transform.up * rightController.JoystickY;
-			if(this.EnableRoll) {
-				Vector3 torque = this.Ship.transform.forward * 
-					this.RotationPower * 
-					-rightController.JoystickX;
-				this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
+			if(leftController == null || rightController == null) {
+				Debug.Log("Could not find Sixense controllers!");
+			} else {		
+				direction = this.Ship.transform.forward * leftController.JoystickY +
+					this.Ship.transform.right * leftController.JoystickX;
+				
+				direction += this.Ship.transform.up * rightController.JoystickY;
+				if(this.EnableRoll) {
+					Vector3 torque = this.Ship.transform.forward * 
+						this.RotationPower * 
+						-rightController.JoystickX;
+					this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
+				}
 			}
-			
 		} else {
 			if(Input.GetKey(this.MoveForwardKey)) {
 				direction += this.Ship.transform.forward;
@@ -105,6 +108,6 @@ public class ShipMovement : MonoBehaviour {
 			// Rotation axis is the cross product of the target and current forward vector
 			Vector3 axis = Vector3.Cross(this.Ship.transform.forward, this.Camera.transform.forward);
 			this.Ship.GetComponent<Rigidbody>().AddTorque(axis * this.RotationPower);
-		}
+		}		
 	}
 }
