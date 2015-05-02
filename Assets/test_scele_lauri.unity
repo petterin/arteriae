@@ -849,6 +849,7 @@ GameObject:
   - 114: {fileID: 349365098}
   - 82: {fileID: 349365097}
   - 114: {fileID: 349365099}
+  - 114: {fileID: 349365100}
   m_Layer: 0
   m_Name: CameraWithShip
   m_TagString: Untagged
@@ -975,6 +976,19 @@ MonoBehaviour:
   LeftClawLeftBlade: {fileID: 2096802670}
   LeftClawRightBlade: {fileID: 1164550604}
   SixenseInputObject: {fileID: 0}
+--- !u!114 &349365100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 349365095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36c6ab8800ab45cdb71d30839703b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Control: 122
+  shipModel: {fileID: 211791323}
 --- !u!1 &390236499
 GameObject:
   m_ObjectHideFlags: 0
@@ -4018,7 +4032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hand: 0
-  Control: 111
+  Control: 0
 --- !u!23 &1027746599
 MeshRenderer:
   m_ObjectHideFlags: 0
