@@ -100,7 +100,8 @@ public class ShipMovement : MonoBehaviour {
 		
 		direction.Normalize();
 		// Note: no deltaTime multiplier is necessary, the physics engine takes care of that
-		this.Ship.GetComponent<Rigidbody>().AddForce(direction * this.Power);
+		Rigidbody rigidbody = this.Ship.GetComponent<Rigidbody>();
+		rigidbody.AddForce(direction * this.Power);
 		
 		// Moving the camera with the ship
 		this.Camera.transform.position = this.Ship.transform.position;
@@ -110,7 +111,9 @@ public class ShipMovement : MonoBehaviour {
 		if(angle > this.RotationThresholdAngle) {
 			// Rotation axis is the cross product of the target and current forward vector
 			Vector3 axis = Vector3.Cross(this.Ship.transform.forward, this.Camera.transform.forward);
-			this.Ship.GetComponent<Rigidbody>().AddTorque(axis * this.RotationPower);
-		}		
+			Quaternion q = this.Ship.transform.rotation * rigidbody.inertiaTensorRotation;
+			Vector3 torque = q * Vector3.Scale(rigidbody.inertiaTensor, Quaternion.Inverse(q) * axis * this.RotationPower);
+			this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
+		}
 	}
 }
