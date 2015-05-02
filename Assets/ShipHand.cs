@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class ShipHand : MonoBehaviour {
-	public KeyCode control;
+	// Used only to detect trigger presses
+	public SixenseHands Hand;
+	// Used for debugging mainly
+	public KeyCode Control;
 	
 	private bool closed;
 
@@ -13,7 +16,9 @@ public class ShipHand : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey(this.control)) {
+		SixenseInput.Controller controller = SixenseInput.GetController(Hand);
+		// NOTE: the trigger button threshold can be set through SixenseInput
+		if(Input.GetKey(this.Control) || (controller != null && controller.GetButton(SixenseButtons.TRIGGER))) {
 			if(!this.closed)
 				Debug.Log("Closing hand");
 			this.closed = true;
