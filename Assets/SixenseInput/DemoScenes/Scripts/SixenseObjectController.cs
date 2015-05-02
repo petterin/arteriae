@@ -21,12 +21,14 @@ public class SixenseObjectController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		//Debug.Log("Updating sixense oc");
 		if ( Hand == SixenseHands.UNKNOWN )
 		{
 			return;
 		}
 		
 		SixenseInput.Controller controller = SixenseInput.GetController( Hand );
+		//Debug.Log ("Controller: " + controller);
 		if ( controller != null && controller.Enabled )  
 		{		
 			UpdateObject(controller);
@@ -45,8 +47,10 @@ public class SixenseObjectController : MonoBehaviour {
 	
 	protected virtual void UpdateObject(  SixenseInput.Controller controller )
 	{
+		Debug.Log ("Update sixense object");
 		if ( controller.GetButtonDown( SixenseButtons.START ) )
 		{
+			Debug.Log ("Start down!");
 			// enable position and orientation control
 			m_enabled = !m_enabled;
 			

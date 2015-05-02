@@ -17,6 +17,8 @@ public class ShipMovement : MonoBehaviour {
 	
 	public bool EnableRoll = true;
 	
+	public Vector3 centerOfMass;
+	
 	private KeyCode MoveForwardKey = KeyCode.W;
 	private KeyCode MoveBackwardKey = KeyCode.S;
 	private KeyCode MoveLeftKey = KeyCode.A;
@@ -37,10 +39,11 @@ public class ShipMovement : MonoBehaviour {
 		if(this.SixenseInputObject == null) {
 			Debug.LogWarning("No SixenseInput found for the ShipMovement script! Only keyboard commands are available: WASD, IKJL", this);
 		}
+		this.Ship.GetComponent<Rigidbody>().centerOfMass = this.centerOfMass;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Vector3 direction = new Vector3(0,0,0);
 		
 		// Handling translation first

@@ -103,6 +103,7 @@ public class RUISWandSelector : MonoBehaviour {
     public void Update()
     {
         GameObject selectionGameObject = CheckForSelection();
+        Debug.Log("Update, selection: " + selectionGameObject);
         if (!selection)
         {
             if (selectionGameObject)
@@ -117,6 +118,7 @@ public class RUISWandSelector : MonoBehaviour {
 
                 if (selectableObject && !selectableObject.isSelected)
                 {
+                	Debug.Log("Selectable found: " + selectableObject);
                     if (selectableObject != highlightedObject)
                     {
                         if (highlightedObject != null) highlightedObject.OnSelectionHighlightEnd();
