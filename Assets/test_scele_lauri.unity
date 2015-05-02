@@ -221,7 +221,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
       propertyPath: enableRazerHydra
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 7e2baee5779349340b6a78274c032bf7, type: 2}
       propertyPath: m_IsActive
@@ -346,7 +346,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: 111
-  parent: {fileID: 211791323}
 --- !u!114 &90098568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2067,7 +2066,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: 111
-  parent: {fileID: 211791323}
 --- !u!23 &853154339
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3662,6 +3660,10 @@ Prefab:
     - target: {fileID: 100000, guid: 808b2784203ff7c449311585d3d42724, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 808b2784203ff7c449311585d3d42724, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 808b2784203ff7c449311585d3d42724, type: 2}
