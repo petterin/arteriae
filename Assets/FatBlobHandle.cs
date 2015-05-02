@@ -31,6 +31,7 @@ public class FatBlobHandle : Destroyable {
 			}
 			this.lastHandPosition = this.collidingHand.transform.position;
 		} else {
+			// The blob was dragged off and the hand was released
 			if(this.collidingHand != null && !this.collidingHand.IsClosed() && this.beingDragged && !this.attached) {
 				this.StartDestroying();
 			}
