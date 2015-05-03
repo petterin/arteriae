@@ -47,7 +47,7 @@ public class SixenseObjectController : MonoBehaviour {
 	
 	protected virtual void UpdateObject(  SixenseInput.Controller controller )
 	{
-		Debug.Log ("Update sixense object");
+		//Debug.Log ("Update sixense object");
 		if ( controller.GetButtonDown( SixenseButtons.START ) )
 		{
 			Debug.Log ("Start down!");

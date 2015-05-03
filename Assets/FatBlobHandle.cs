@@ -9,6 +9,7 @@ public class FatBlobHandle : Destroyable {
 	private bool attached;
 	private bool beingDragged;
 	private Vector3 lastHandPosition;
+	private AudioSource slimePlayer;
 	
 	public bool IsAttached() {
 		return this.attached;
@@ -19,6 +20,7 @@ public class FatBlobHandle : Destroyable {
 		base.Start();
 		this.attached = true;
 		this.collidingHand = null;
+		this.slimePlayer = this.transform.parent.gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -45,6 +47,10 @@ public class FatBlobHandle : Destroyable {
 			if(collider.Equals(this.hands[i].GetComponent<Collider>())) {
 				Debug.Log("Collision enter with hand " + this.hands[i]);
 				this.collidingHand = this.hands[i];
+				if (!this.slimePlayer.isPlaying) {
+					this.slimePlayer.Play();
+					Debug.Log ("Slime playing");
+				}
 			}
 		}
 	}
@@ -60,6 +66,10 @@ public class FatBlobHandle : Destroyable {
 			if(collider.Equals(this.hands[i])) {
 				Debug.Log("Collision exit with hand " + this.hands[i]);
 				this.collidingHand = null;
+				if (this.slimePlayer.isPlaying) {
+					this.slimePlayer.Stop();
+					Debug.Log ("SLIME STOPPED");
+				}
 			}
 		}
 	}
