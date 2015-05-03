@@ -10,7 +10,7 @@
     <maxControllers value="4" />
   </PSMoveSettings>
   <KinectSettings>
-    <enabled value="false" />
+    <enabled value="true" />
     <maxPlayers value="1" />
     <floorDetection value="true" />
     <jumpGestureEnabled value="true" />
@@ -20,7 +20,7 @@
     <floorDetection value="true" />
   </Kinect2Settings>
   <RazerSettings>
-    <enabled value="false" />
+    <enabled value="true" />
   </RazerSettings>
   <OculusDriftSettings>
     <kinectDriftCorrectionIfAvailable value="false" />

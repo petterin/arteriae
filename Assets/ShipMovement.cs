@@ -54,7 +54,7 @@ public class ShipMovement : MonoBehaviour {
 			SixenseInput.Controller rightController = SixenseInput.GetController(SixenseHands.RIGHT);
 			
 			if(leftController == null || rightController == null) {
-				Debug.Log("Could not find Sixense controllers!");
+				//Debug.Log("Could not find Sixense controllers!");
 			} else {		
 				direction = this.Ship.transform.forward * leftController.JoystickY +
 					this.Ship.transform.right * leftController.JoystickX;
