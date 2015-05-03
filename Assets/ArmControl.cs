@@ -15,14 +15,12 @@ public class ArmControl : MonoBehaviour {
 	
 	private Vector3 forearmSize;
 	private Vector3 upperArmSize;
-	private Vector3 upperArmOriginalScale;
 
 	// Use this for initialization
 	void Start () {
 		// Note: if the arm is rotated in world space, this computation will give the wrong result
 		this.upperArmSize = this.UpperArm.GetComponent<Renderer>().bounds.size;
 		this.forearmSize = this.Forearm.GetComponent<Renderer>().bounds.size;
-		this.upperArmOriginalScale = this.UpperArm.transform.localScale;
 	}
 	
 	// Update is called once per frame
