@@ -64,7 +64,7 @@ public class ShipMovement : MonoBehaviour {
 					Vector3 torque = this.Ship.transform.forward * 
 						this.RotationPower * 
 						-rightController.JoystickX;
-					this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
+					this.Ship.GetComponent<Rigidbody>().AddTorque(getTorqueWithoutInertiaTensor(torque));
 				}
 			}
 		} else {
@@ -94,7 +94,7 @@ public class ShipMovement : MonoBehaviour {
 				if(Input.GetKey(this.RollRightKey)) {
 					torque -= this.Ship.transform.forward * this.RotationPower;
 				}
-				this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
+				this.Ship.GetComponent<Rigidbody>().AddTorque(getTorqueWithoutInertiaTensor(torque));
 			}
 		}
 		
@@ -111,9 +111,14 @@ public class ShipMovement : MonoBehaviour {
 		if(angle > this.RotationThresholdAngle) {
 			// Rotation axis is the cross product of the target and current forward vector
 			Vector3 axis = Vector3.Cross(this.Ship.transform.forward, this.Camera.transform.forward);
-			Quaternion q = this.Ship.transform.rotation * rigidbody.inertiaTensorRotation;
-			Vector3 torque = q * Vector3.Scale(rigidbody.inertiaTensor, Quaternion.Inverse(q) * axis * this.RotationPower);
+			Vector3 torque = getTorqueWithoutInertiaTensor(axis * this.RotationPower);
 			this.Ship.GetComponent<Rigidbody>().AddTorque(torque);
 		}
+	}
+	
+	private Vector3 getTorqueWithoutInertiaTensor(Vector3 torque) {
+		Rigidbody rigidbody = this.Ship.GetComponent<Rigidbody>();
+		Quaternion q = this.Ship.transform.rotation * rigidbody.inertiaTensorRotation;
+		return q * Vector3.Scale(rigidbody.inertiaTensor, Quaternion.Inverse(q) * torque);
 	}
 }
