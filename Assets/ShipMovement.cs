@@ -47,7 +47,7 @@ public class ShipMovement : MonoBehaviour {
 		Vector3 direction = new Vector3(0,0,0);
 		
 		// Handling translation first
-		if(this.SixenseInputObject != null) {
+		if(this.SixenseInputObject != null && this.SixenseInputObject.activeInHierarchy) {
 			// The left joystick is used for movement in the xz plane
 			SixenseInput.Controller leftController = SixenseInput.GetController(SixenseHands.LEFT);
 			// Moving up and down is controlled by the right handle's buttons 4 and 3
