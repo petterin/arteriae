@@ -33,14 +33,14 @@ public class ArmControl : MonoBehaviour {
 		// Moving and rotating the forearm, no scaling for that
 		Vector3 forearmOrigin = shoulderTargetInWorld + armInWorld - armDirection * this.forearmSize.z;
 		this.Forearm.transform.position = forearmOrigin;
-		Vector3 forearmRotationInWorld = this.Forearm.transform.InverseTransformVector(this.Forearm.transform.forward);
-		this.Forearm.transform.rotation = Quaternion.FromToRotation(forearmRotationInWorld, armDirection);
+		Vector3 forearmRotationInLocal = this.Forearm.transform.InverseTransformVector(this.Forearm.transform.forward);
+		this.Forearm.transform.rotation = Quaternion.FromToRotation(forearmRotationInLocal, armDirection);
 		
 		// Then the upper arm, which is scaled to fill the gap between the ship and the forearm
 		Vector3 upperArmInWorld = forearmOrigin - shoulderTargetInWorld;
 		this.UpperArm.transform.position = shoulderTargetInWorld;
-		Vector3 upperArmRotationInWorld = this.UpperArm.transform.InverseTransformVector(this.UpperArm.transform.forward);
-		this.UpperArm.transform.rotation = Quaternion.FromToRotation(upperArmRotationInWorld, armDirection);
+		Vector3 upperArmRotationInLocal = this.UpperArm.transform.InverseTransformVector(this.UpperArm.transform.forward);
+		this.UpperArm.transform.rotation = Quaternion.FromToRotation(upperArmRotationInLocal, armDirection);
 		// Scaling only the Z axis
 		Vector3 upperArmScale = this.UpperArm.transform.localScale;
 		upperArmScale.z = upperArmInWorld.magnitude / this.upperArmSize.z;
