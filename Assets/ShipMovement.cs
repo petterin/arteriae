@@ -51,7 +51,6 @@ public class ShipMovement : MonoBehaviour {
 	void FixedUpdate () {
 		if(!this.paused) {
 			Vector3 direction = new Vector3(0,0,0);
-			
 			// Handling translation first
 			if(this.SixenseInputObject != null && this.SixenseInputObject.activeInHierarchy) {
 				// The left joystick is used for movement in the xz plane
@@ -128,7 +127,7 @@ public class ShipMovement : MonoBehaviour {
 		if(Input.GetKeyDown(this.PauseKey)) {
 			this.paused = !this.paused;
 			Debug.Log("Set paused: " + this.paused);
-		}	
+		}
 	}
 	
 	private Vector3 getTorqueWithoutInertiaTensor(Vector3 torque) {

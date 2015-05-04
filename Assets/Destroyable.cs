@@ -10,7 +10,7 @@ public class Destroyable : MonoBehaviour {
 	protected void Start () {
 		this.destroying = false;
 		this.originalScale = this.transform.localScale;
-		this.shrinkSpeed = 20 + Random.Range(-10f, 10f);
+		this.shrinkSpeed = 10 + Random.Range(-10f, 10f);
 	}
 	
 	// Update is called once per frame

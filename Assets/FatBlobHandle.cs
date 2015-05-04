@@ -4,13 +4,15 @@ using System.Collections;
 [RequireComponent (typeof (Rigidbody))]
 public class FatBlobHandle : Destroyable {
 	public ShipHand[] hands;
-	
+	public AudioSource completionPlayer;
+	public AudioSource completionVoicePlayer;
 	private ShipHand collidingHand;
 	private bool attached;
 	private bool beingDragged;
 	private Vector3 lastHandPosition;
 	private AudioSource slimePlayer;
-	
+
+
 	public bool IsAttached() {
 		return this.attached;
 	}
@@ -61,6 +63,10 @@ public class FatBlobHandle : Destroyable {
 			Debug.Log("Handle blob exited wall!");
 			this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 			this.attached = false;
+			completionPlayer.PlayOneShot (completionPlayer.clip, 1f);
+			if(completionVoicePlayer != null) {
+				completionVoicePlayer.PlayDelayed(1f);
+			}
 		}
 		for(int i = 0; i < this.hands.Length; i++) {
 			if(collider.Equals(this.hands[i])) {
