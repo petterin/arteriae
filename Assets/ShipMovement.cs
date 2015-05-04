@@ -104,7 +104,7 @@ public class ShipMovement : MonoBehaviour {
 		rigidbody.AddForce(direction * this.Power);
 		
 		// Moving the camera with the ship
-		this.Camera.transform.position = this.Ship.transform.position;
+		// this.Camera.transform.position = this.Ship.transform.position;
 		
 		// Then handling rotation
 		float angle = Vector3.Angle(this.Ship.transform.forward, this.Camera.transform.forward);
