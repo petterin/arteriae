@@ -450,7 +450,7 @@ MonoBehaviour:
   ClawPivotLeft: {x: 0, y: 0, z: 0}
   ClawPivotRight: {x: 0, y: 0, z: 0}
   CloseSpeed: 10
-  MaxAngleOfClaws: 0
+  MaxAngleOfClaws: 24
 --- !u!114 &90098568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,7 +903,7 @@ SphereCollider:
   m_GameObject: {fileID: 185907293}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1842,7 +1842,7 @@ MonoBehaviour:
   Ship: {fileID: 211791323}
   Camera: {fileID: 1736838787}
   SixenseInputObject: {fileID: 1082759709}
-  Power: 100000
+  Power: 80000
   RotationPower: 1
   RotationThresholdAngle: 3
   EnableRoll: 1
@@ -3599,7 +3599,7 @@ SphereCollider:
   m_GameObject: {fileID: 679886289}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
@@ -4510,7 +4510,7 @@ SphereCollider:
   m_GameObject: {fileID: 864760634}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
@@ -10430,7 +10430,7 @@ SphereCollider:
   m_GameObject: {fileID: 1505141177}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
@@ -11349,7 +11349,7 @@ SphereCollider:
   m_GameObject: {fileID: 1642874297}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
@@ -12386,7 +12386,7 @@ MonoBehaviour:
   ClawPivotLeft: {x: 0, y: 0, z: 0}
   ClawPivotRight: {x: 0, y: 0, z: 0}
   CloseSpeed: 10
-  MaxAngleOfClaws: 0
+  MaxAngleOfClaws: 24
 --- !u!1 &1906667350
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 86a23107ea4b92141b1e3b27393f8f48, type: 2}
@@ -13727,7 +13727,7 @@ SphereCollider:
   m_GameObject: {fileID: 2146054006}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
