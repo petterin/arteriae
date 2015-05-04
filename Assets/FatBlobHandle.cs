@@ -46,7 +46,7 @@ public class FatBlobHandle : Destroyable {
 	
 	void OnTriggerEnter(Collider collider) {
 		for(int i = 0; i < this.hands.Length; i++) {
-			if(collider.Equals(this.hands[i].GetComponent<Collider>())) {
+			if(collider.Equals(this.hands[i].ClawCollider)) {
 				Debug.Log("Collision enter with hand " + this.hands[i]);
 				this.collidingHand = this.hands[i];
 				if (!this.slimePlayer.isPlaying) {
