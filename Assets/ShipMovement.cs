@@ -22,7 +22,9 @@ public class ShipMovement : MonoBehaviour {
 	public Vector3 centerOfMass;
 	
 	private bool paused;
-	
+
+	private bool hasStarted = false;
+
 	private KeyCode MoveForwardKey = KeyCode.W;
 	private KeyCode MoveBackwardKey = KeyCode.S;
 	private KeyCode MoveLeftKey = KeyCode.A;
@@ -127,6 +129,11 @@ public class ShipMovement : MonoBehaviour {
 		if(Input.GetKeyDown(this.PauseKey)) {
 			this.paused = !this.paused;
 			Debug.Log("Set paused: " + this.paused);
+			if (this.hasStarted == false && this.paused == false) {
+				this.hasStarted = true;
+				Debug.Log ("Pause was taken off for the first time. LET'S GO!!");
+				this.GetComponent<AudioSource>().Play();
+			}
 		}
 	}
 	
