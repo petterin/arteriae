@@ -40,6 +40,11 @@ public class FatBlobHandle : Destroyable {
 				this.StartDestroying();
 			}
 			this.beingDragged = false;
+
+			if (this.slimePlayer.isPlaying) {
+				this.slimePlayer.Stop();
+				Debug.Log ("SLIME STOPPED");
+			}
 		}
 		base.Update();
 	}
@@ -49,7 +54,7 @@ public class FatBlobHandle : Destroyable {
 			if(collider.Equals(this.hands[i].ClawCollider)) {
 				Debug.Log("Collision enter with hand " + this.hands[i]);
 				this.collidingHand = this.hands[i];
-				if (!this.slimePlayer.isPlaying) {
+				if (!this.slimePlayer.isPlaying && this.beingDragged) {
 					this.slimePlayer.Play();
 					Debug.Log ("Slime playing");
 				}
@@ -72,10 +77,6 @@ public class FatBlobHandle : Destroyable {
 			if(collider.Equals(this.hands[i])) {
 				Debug.Log("Collision exit with hand " + this.hands[i]);
 				this.collidingHand = null;
-				if (this.slimePlayer.isPlaying) {
-					this.slimePlayer.Stop();
-					Debug.Log ("SLIME STOPPED");
-				}
 			}
 		}
 	}
